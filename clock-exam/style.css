@@ -1,0 +1,129 @@
+
+@keyframes blinker {  
+    50% { opacity: .4; }
+}
+
+@keyframes come-in-1 {
+    0% {
+        bottom: -200px;
+    }
+    69% {
+        bottom: 0px;
+        transform: perspective(500px) rotateY(10);
+    }
+    100% {
+        bottom: -200px;
+        left: 0;
+    }
+}
+@keyframes come-in-2 {
+    0% {
+        top: -200px;
+        transform: rotateX(180deg);
+    }
+
+    69% {
+        top: 0px;
+        transform: rotateX(180deg);
+    }
+
+    100% {
+        top: -200px;
+        transform: rotateX(180deg);
+    }
+}
+@keyframes come-in-3 {
+    0% {
+        transform: rotate(-90deg);
+        top: 72%;
+        left: 87%;
+    }
+    7% {
+        top: 60%;
+        left: 80%;
+        transform: rotate(-106deg);
+    }
+    21% {
+        top: 43%;
+        left: 87%;
+        transform: rotate(-90deg);
+    }
+    36% {
+        top: 32%;
+        left: 82%;
+        transform: rotate(-111deg);
+    }
+    69% {
+        top: 50%;
+        right: 0px;
+        transform: rotate(-90deg);
+    }
+    75% {
+        top: 13%;
+        left: 87%;
+        transform: rotate(-90deg);
+    }
+    100% {
+        top: -30%;
+        left: 87%;
+        transform: rotate(-90deg);
+    }
+}
+
+.blink_me {
+    animation: blinker 1s linear infinite;
+}
+
+body {
+    margin: 0;
+    padding:0;
+    background-color: #ffffff;
+    font-family: 'Share Tech Mono', monospace;
+    min-height: 100vh;
+    overflow: hidden;
+}
+div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+h1 {
+    color: #e90505;
+    text-align: center;
+    font-size: 250px;
+    font-family: 'Share Tech Mono', monospace;
+    margin: 0;
+    
+}
+h2 {
+    color: #e90505;
+    margin:0;
+    text-align: center;
+    margin: 0;
+}
+button, input {
+    background: none;
+    border: thin solid gray;
+    margin-top: 3px;
+    margin-left: 3px;
+}
+
+
+#funny-image {
+    bottom: -200px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 200px;
+    width: auto;
+}
+#funny-image.play-1 {
+    animation: come-in-1 4s ease-in-out;
+}
+#funny-image.play-2 {
+    animation: come-in-2 4s ease-in-out;
+}
+#funny-image.play-3 {
+    animation: come-in-3 4s ease-in-out;
+}

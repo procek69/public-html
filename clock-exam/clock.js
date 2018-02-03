@@ -5,6 +5,16 @@
     var timer = document.getElementById('timer');
     var funnyImage = document.getElementById('funny-image');
     var interval;
+	var fullScreenClickListener = function() {
+		let doc = document.documentElement,
+		rfs = doc.requestFullscreen
+				|| doc.webkitRequestFullScreen
+				|| doc.mozRequestFullScreen
+				|| doc.msRequestFullscreen ;
+
+		rfs.call(doc);
+		document.removeEventListener("click", fullScreenClickListener);
+	};
 
     function flashing() {
         document.getElementById('msg').innerText = 'Ostatnie zadanko';
@@ -15,6 +25,22 @@
         document.getElementById('msg').innerText = '';
         timer.innerText = 'koniec';
     }
+	
+	function registerFullscreenRequest() {
+		document.addEventListener("click", fullScreenClickListener);
+	}
+	
+	function findGetParameter(parameterName) {
+		var result = null, tmp = [];
+		location.search
+				.substr(1)
+				.split("&")
+				.forEach(function (item) {
+					tmp = item.split("=");
+					if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+				});
+		return result;
+	}
 
     setInterval(function () {
         var which = 'play-' + parseInt((Math.random() * 3) + 1);
@@ -68,6 +94,15 @@
             }, 10);
     });
     
-    
+    window.addEventListener('load', function() {
+		let timeValue = findGetParameter("t");
+		if(timeValue != null && timeValue != undefined) document.getElementById('time').value = timeValue;
+		
+		let autoplay = findGetParameter("autoplay");
+		if(autoplay != null && autoplay != undefined) document.getElementById('button').click()
+			
+		let rfs = findGetParameter("rfs");
+		if(rfs != null && rfs != undefined) registerFullscreenRequest();
+	});
 
 })();
